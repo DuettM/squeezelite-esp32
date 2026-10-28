@@ -27,7 +27,7 @@ jobs:
         run: |
           docker pull sle118/squeezelite-esp32-idfv4-master
           docker run -v "$PWD":/project -w /project sle118/squeezelite-esp32-idfv4-master \
-                     /bin/bash -c "python3 -m pip install protobuf==3.20.3 && cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig && idf.py build -DDEPTH=16 -DBUILD_NUMBER=wififix-16"
+                     /bin/bash -c "python3 -m pip install protobuf==3.20.3 grpcio-tools==1.48.2 && cp build-scripts/I2S-4MFlash-sdkconfig.defaults sdkconfig && idf.py build -DDEPTH=16 -DBUILD_NUMBER=wififix-16"
       - name: Pruefen, dass die App wirklich gebaut wurde
         run: |
           echo "--- build/ Inhalt:"; ls -la build/*.bin build/bootloader/bootloader.bin build/partition_table/partition-table.bin 2>/dev/null || true
